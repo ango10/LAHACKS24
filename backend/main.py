@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from models import User, Food
 from pymongo_get_database import get_database
 import datetime
@@ -8,10 +9,17 @@ user_collection = db["users"]
 food_collection = db["food"]
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins="http://localhost:3000",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.post("/user/")
-def mongodb_insert_user(user: User):
+async def mongodb_insert_user(user: User):
     try:
         # change database schema, check if user exists already
         # user = {
@@ -19,7 +27,7 @@ def mongodb_insert_user(user: User):
         #     "password" : password
         # }
         # user_collection.insert_one(user)
-        return "Added user"
+        return {"Added user": True}
     except:
         raise HTTPException(status_code=400, detail="Cannot add user")
 
