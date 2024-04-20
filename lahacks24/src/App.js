@@ -4,8 +4,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Camera from "./pages/Camera";
-import Fridge from "./pages/Fridge";
-import Extra from "./pages/Extra";
+import View from "./pages/View";
+import Recipes from "./pages/Recipes";
 import NoPage from "./pages/NoPage";
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Camera" element={<Camera />} />
-          <Route path="/Fridge" element={<Fridge />} />
-          <Route path="/Extra" element={<Extra />} />
+          <Route path="/View" element={<View />} />
+          <Route path="/Recipes" element={<Recipes />} />
           <Route path="*" element={<NoPage />} />
       </Routes>
     </BrowserRouter>
