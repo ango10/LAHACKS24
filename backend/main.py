@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models import User, Food
 from pymongo_get_database import get_database
-import datetime
+
 
 db = get_database()
 user_collection = db["users"]
@@ -21,15 +21,14 @@ app.add_middleware(
 @app.post("/user/")
 async def mongodb_insert_user(user: User):
     try:
-        # change database schema, check if user exists already
-        # user = {
-        #     "username" : user.username,
-        #     "password" : password
-        # }
-        # user_collection.insert_one(user)
+        user = {
+            "username" : user.username
+        }
+        if len([_ for _ in user_collection.find(user)]) == 0:
+            user_collection.insert_one(user)
         return {"Added user": True}
-    except:
-        raise HTTPException(status_code=400, detail="Cannot add user")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Cannot add user: {e}")
 
 
 @app.post("/food/")
@@ -37,14 +36,14 @@ def mongodb_insert_food(food: Food):
     try:
         food = {
             "username": food.username,
-            "food_name": food.name,
+            "name": food.name,
             "bought_date": food.bought_date,
             "expiration_date": food.expiration_date,
         }
         food_collection.insert_one(food)
-        return "Added food"
-    except:
-        raise HTTPException(status_code=400, detail="Cannot add food")
+        return {"Added food": True}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Cannot add food: {e}")
 
 
 @app.get("/all_food/")
@@ -52,12 +51,12 @@ def mongodb_get_all_food(username):
     try:
         food_list = []
         for food in food_collection.find({"username": username}):
-            food_list.append(food.get("food_name"))
+            food_list.append(food.get("name"))
 
         # may need to jsonify it
         return food_list
-    except:
-        raise HTTPException(status_code=400, detail="Cannot get all food")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Cannot get all food: {e}")
 
 
 @app.get("/expiring_food/")
