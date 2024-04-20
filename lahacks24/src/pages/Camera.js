@@ -25,7 +25,8 @@ const Camera = () => {
         body: JSON.stringify({ username: user.email }),
       })
         .then((data) => {
-          console.log(data.text());
+          // change later, does nothing
+          console.log(data.json());
         })
         .catch((err) => {
           console.log(err);
