@@ -1,0 +1,2 @@
+# LAHACKS24
+UCLA Hackathon 2024'
