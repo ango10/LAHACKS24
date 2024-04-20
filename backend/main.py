@@ -28,10 +28,10 @@ def mongodb_insert_user(user: User):
 def mongodb_insert_food(food: Food):
     try:
         food = {
-            "username" : food.username,
-            "food_name" : food.name,
-            "bought_date" : food.bought_date,
-            "expiration_date" : food.expiration_date
+            "username": food.username,
+            "food_name": food.name,
+            "bought_date": food.bought_date,
+            "expiration_date": food.expiration_date,
         }
         food_collection.insert_one(food)
         return "Added food"
@@ -43,7 +43,7 @@ def mongodb_insert_food(food: Food):
 def mongodb_get_all_food(username):
     try:
         food_list = []
-        for food in food_collection.find({"username" : username}):
+        for food in food_collection.find({"username": username}):
             food_list.append(food.get("food_name"))
 
         # may need to jsonify it
@@ -56,7 +56,9 @@ def mongodb_get_all_food(username):
 def mongodb_get_expiring_food(username, expiration_date):
     try:
         food_list = []
-        for food in food_collection.find({"username" : username}, {"expiration_date" : {"$lte" : expiration_date}}):
+        for food in food_collection.find(
+            {"username": username}, {"expiration_date": {"$lte": expiration_date}}
+        ):
             food_list.append(food.get("food_name"))
 
         # may need to jsonify it
@@ -68,7 +70,7 @@ def mongodb_get_expiring_food(username, expiration_date):
 @app.post("/remove_user/")
 def mongodb_remove_user(user: User):
     try:
-        user_collection.delete_one({"username" : user.username})
+        user_collection.delete_one({"username": user.username})
         return "Deleted user"
     except:
         raise HTTPException(status_code=400, detail="Cannot delete user")
@@ -77,10 +79,16 @@ def mongodb_remove_user(user: User):
 @app.post("/remove_food/")
 def mongodb_remove_food(food: Food):
     try:
-        food_collection.delete_one({"username" : food.username}, {"food_name" : food.name}, {"bought_date" : food.bought_date}, {"expiration_date" : food.expiration_date})
+        food_collection.delete_one(
+            {"username": food.username},
+            {"food_name": food.name},
+            {"bought_date": food.bought_date},
+            {"expiration_date": food.expiration_date},
+        )
         return "Deleted food"
     except:
         raise HTTPException(status_code=400, detail="Cannot delete food")
+
 
 # not implemented
 def mongodb_clear():

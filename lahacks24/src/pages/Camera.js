@@ -13,9 +13,19 @@ const Camera = () => {
     setIngredients(ingredientList);
   };
 
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+
+  React.useEffect(() => {
+    if (!isLoading && user !== undefined) {
+        console.log(JSON.stringify({username: user.email}))
+        fetch("http://localhost:8000/user/", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({username: user.email})}).then((data) => {
+            console.log(JSON.stringify({username: user.email}))
+        }).catch((err) => {
+            console.log(err)
+        })}}, [isLoading]);
+
+    if (isLoading) {
+        return <div>Loading ...</div>;
+    }
 
     return <div style={{ backgroundImage: `url("/fridge.jpg")`}}> 
     <div>
