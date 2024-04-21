@@ -7,15 +7,15 @@ const Home = () => {
 
   return (
     <div className='relative'>
-      <video src={videoBG} autoPlay loop muted className='absolute inset-0 w-full h-full object-cover z-0'></video>
-      <div className='absolute top-0 left-0 w-full h-full bg-black opacity-50 z-1'></div>
+      <video src={videoBG} autoPlay loop muted className='absolute inset-0 h-screen object-cover z-0'></video>
+      <div className='absolute w-screen h-screen bg-black opacity-60 z-1'></div>
       <div className='absolute'>
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <ul class="font-bold flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <div class="flex flex-wrap items-center justify-between mx-auto p-4">
+          <ul class="font-bold flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <a
                 href="/"
-                class="block py-2 px-3 text-blue-700 rounded md:border-0 md:p-0 dark:text-white :bg-transparent"
+                class="block py-2 px-3 text-blue-500 rounded md:border-0 md:p-0 dark:text-white :bg-transparent"
               >
                 Home
               </a>
@@ -47,7 +47,7 @@ const Home = () => {
           </ul>
         </div>
       </div>
-      <div className='pt-3 pr-4 flex justify-end z-10'>
+      <div className='pt-4 pr-4 flex justify-end z-10'>
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10"
           onClick={() => loginWithRedirect()}
@@ -55,7 +55,7 @@ const Home = () => {
           Log In
         </button>
       </div>
-      <div className='text-center flex justify-center items-center h-screen'>
+      <div className='text-center flex justify-center mt-80'>
         <h1 className='font-bold text-8xl text-white z-20'>
           Welcome to<br></br>
           <ReactTyped strings={["Reimagined"]} className='text-blue-500' typeSpeed={175} loop backSpeed={175}/>
