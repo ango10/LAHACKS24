@@ -23,7 +23,7 @@ const Home = () => {
           Begin
         </button>
       </div>
-      <div className="text-center flex justify-center mt-80">
+      <div className="text-center flex justify-center mt-80" style={{fontFamily: "Indie Flower"}}>
         <h1 className="font-bold text-8xl text-white z-20">
           Welcome to<br></br>
           <ReactTyped

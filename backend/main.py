@@ -21,6 +21,7 @@ app.add_middleware(
 )
 
 
+
 @app.post("/user/")
 async def mongodb_insert_user(user: User):
     try:
@@ -109,14 +110,14 @@ def mongodb_remove_food(food: Food):
     except:
         raise HTTPException(status_code=400, detail="Cannot delete food")
     
-@app.get("/get_recipes")
-def get_recipes():
+@app.get("/get_recipes/{username}")
+def get_recipes(username):
     genai.configure(api_key=os.environ.get("API_KEY"))
     model = genai.GenerativeModel('gemini-pro')
 
     prompt = "give me 3 recipes using 1 or more ingredients from this list: "
 
-    for food in mongodb_get_all_food("jennil38@uci.edu"):
+    for food in mongodb_get_all_food(username):
         prompt += food + " "
 
     prompt += ". please separate each recipe using an @ symbol"
@@ -130,6 +131,3 @@ def get_recipes():
 def mongodb_clear():
     food_collection.delete_many({})
     user_collection.delete_many({})
-
-
-get_recipes()
