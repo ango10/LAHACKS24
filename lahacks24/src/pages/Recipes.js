@@ -11,10 +11,10 @@ const Extra = () => {
     const [recipes, setRecipes] = useState([]);
 
 
-    return recipes.length === 0 ? <div style={{backgroundImage: `url("/anime_fridge.jpg")`, height: "100vh", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "15% 15%"}}>
+    return recipes.length === 0 ? <div className='h-screen' style={{backgroundImage: `url("/anime_fridge.jpg")`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "15% 15%"}}>
     <div>
         <div>
-            <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+            <div class="absolute max-w-screen-xl flex items-center justify-between mx-auto p-4">
                 <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <div style={{backgroundColor: "#debb8e", padding: "8px", borderRadius: "10px"}}>
                     <li>
@@ -45,10 +45,10 @@ const Extra = () => {
         <h1 class='text-slate-800' style={{fontFamily: "Pixelify Sans", fontSize: "50px"}}>LOADING<ReactTyped strings={["..."]} className='text-slate-800' typeSpeed={150} loop backSpeed={150}/></h1>
         </div>
     </div>
-    </div> : <div style={{backgroundImage: `url("/anime_fridge.jpg")`, height: "100vh", backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "15% 15%"}}>
+    </div> : <div className='h-screen' style={{backgroundImage: `url("/anime_fridge.jpg")`}}>
         <div>
             <div>
-                <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+                <div class="absolute h-screen flex-col items-center justify-between mx-auto p-4">
                     <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                         <div style={{backgroundColor: "#debb8e", padding: "8px", borderRadius: "10px"}}>
                         <li>
@@ -74,10 +74,10 @@ const Extra = () => {
                 </div>
             </div>
         </div>
-        <div>
+        <div className='h-full'>
             <br></br><br></br><br></br>
-            <ul style={{columnCount: "3", alignContent: "center"}}>
-            <div style={{borderRadius: "10px", padding: "20px", margin: "0 20px", fontFamily: "Caveat, cursive", alignContent: "center", border: "7px solid #cdcdcd", borderColor: "rgba(0,0,0,.15)", backgroundColor: "#97cdde"}}>
+            <ul className='flex columns-3 flex-nowrap'>
+            <div className='flex-nowrap h-full' style={{borderRadius: "10px", padding: "20px", margin: "20px", fontFamily: "Caveat, cursive", alignContent: "center", border: "7px solid #cdcdcd", borderColor: "rgba(0,0,0,.15)", backgroundColor: "#97cdde"}}>
                 <li>
                 <h1 class='text-slate-800' style={{textAlign: "center", fontSize: "50px"}}>Recipe 1 </h1>
                 <p class='text-slate-800' style={{fontSize: "23px"}}>
@@ -85,7 +85,7 @@ const Extra = () => {
                 </p>
                 </li>
             </div>
-            <div style={{borderRadius: "10px", padding: "20px", margin: "20px", fontFamily: "Caveat, cursive", alignContent: "center", border: "7px solid #cdcdcd", borderColor: "rgba(0,0,0,.15)", backgroundColor: "#7fc990"}}>
+            <div className='flex-nowrap h-full' style={{borderRadius: "10px", padding: "20px", margin: "20px", fontFamily: "Caveat, cursive", alignContent: "center", border: "7px solid #cdcdcd", borderColor: "rgba(0,0,0,.15)", backgroundColor: "#7fc990"}}>
                 <li>
                 <h1 class='text-slate-800' style={{textAlign: "center", fontSize: "50px"}}>Recipe 2</h1>
                 <p class='text-slate-800' style={{fontSize: "23px"}}>
@@ -93,7 +93,7 @@ const Extra = () => {
                 </p>
                 </li>
             </div>
-            <div style={{borderRadius: "10px", padding: "20px", margin: "20px", fontFamily: "Caveat, cursive", alignContent: "center", border: "7px solid #cdcdcd", borderColor: "rgba(0,0,0,.15)", backgroundColor: "#d9a5c2"}}>
+            <div className='flex-nowrap h-full' style={{borderRadius: "10px", padding: "20px", margin: "20px", fontFamily: "Caveat, cursive", alignContent: "center", border: "7px solid #cdcdcd", borderColor: "rgba(0,0,0,.15)", backgroundColor: "#d9a5c2"}}>
                 <li>
                 <h1 class='text-slate-800' style={{textAlign: "center", fontSize: "50px"}}>Recipe 3</h1>
                 <p class='text-slate-800' style={{fontSize: "23px"}}>
