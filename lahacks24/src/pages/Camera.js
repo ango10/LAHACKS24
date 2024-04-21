@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import fridgeLogo from '../assets/fridgeIcon.png';
 
 const Camera = () => {
   const [ingredients, setIngredients] = React.useState([]);

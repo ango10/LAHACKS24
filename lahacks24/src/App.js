@@ -3,7 +3,6 @@ import "./App.css";
 import ReactDOM from "react-dom/client";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ReactTyped from "react-typed";
 import Home from "./pages/Home";
 import Camera from "./pages/Camera";
 import View from "./pages/View";
@@ -13,8 +12,8 @@ import NoPage from "./pages/NoPage";
 function App() {
   return (
     <Auth0Provider
-      domain="dev-on1vy228eirwa2oo.us.auth0.com"
-      clientId="ctkQfWr55tdgLX3VkpZ2ezbg9IELBFLE"
+      domain={process.env.REACT_APP_AUTH_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       authorizationParams={{
         redirect_uri: "http://localhost:3000/Camera",
       }}
