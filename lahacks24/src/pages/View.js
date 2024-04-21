@@ -113,7 +113,7 @@ const Fridge = () => {
         <ul
           style={{
             fontFamily: "Indie Flower",
-            color: "#515959",
+            color: "#FFFFFF",
             textAlign: "center",
             alignContent: "center",
             top: "0",
@@ -124,21 +124,21 @@ const Fridge = () => {
             fontSize: "25px",
           }}
         >
-          <li style={{ marginTop: "200px", height: "calc(100vh/3 - 45px)" }}>
+          <li className='font-bold' style={{ marginTop: "200px", height: "calc(100vh/3 - 45px)" }}>
             <b>Expiring in &lt;7 days: </b>
             <br></br>
             {lessThan7.map((food) => (
               <p style={{ display: "inline-block", padding: "10px" }}>{food}</p>
             ))}
           </li>
-          <li style={{ height: "calc(100vh/3 - 100px)" }}>
+          <li className='font-bold' style={{ height: "calc(100vh/3 - 100px)" }}>
             <b>Expiring in 7-30 days: </b>
             <br></br>
             {lessThan30.map((food) => (
               <p style={{ display: "inline-block", padding: "10px" }}>{food}</p>
             ))}
           </li>
-          <li style={{ height: "calc(100vh/3)" }}>
+          <li className='font-bold' style={{ height: "calc(100vh/3)" }}>
             <b>Expiring in 30+ days: </b>
             <br></br>
             {greaterThan30.map((food) => (
