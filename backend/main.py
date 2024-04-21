@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from models import User, Food
 from pymongo_get_database import get_database
 import google.generativeai as genai
+from datetime import date
 import os
 
 
@@ -36,15 +37,17 @@ async def mongodb_insert_user(user: User):
 @app.post("/food/")
 def mongodb_insert_food(food: Food):
     try:
-        food = {
-            "username": food.username,
-            "name": food.name,
-            "bought_date": food.bought_date,
-            "expiration_date": food.expiration_date,
-        }
-        food_collection.insert_one(food)
+        for ingredient in food.ingredients:
+            food_item = {
+                "username": food.username,
+                "name": ingredient,
+                "bought_date": str(date.today()),
+                "expiration_date": str(date.today())
+            }
+            food_collection.insert_one(food_item)
         return {"Added food": True}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=400, detail=f"Cannot add food: {e}")
 
 
