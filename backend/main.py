@@ -82,7 +82,7 @@ def mongodb_get_all_food(username):
             else:
                 greater_than_30.append(food)
 
-        return {"less_than_7": less_than_7, "less_than_30": less_than_30, "greater_than_30": greater_than_30}
+        return {"less_than_7": list(set(less_than_7)), "less_than_30": list(set(less_than_30)), "greater_than_30": list(set(greater_than_30))}
     except Exception as e:
         print(e)
         raise HTTPException(status_code=400, detail="Cannot get all food: {e}")
