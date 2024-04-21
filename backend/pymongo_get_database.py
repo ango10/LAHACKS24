@@ -1,7 +1,11 @@
 from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def get_database():
-    CONNECTION_STRING = "mongodb+srv://skiesofjune:IMBTFOLPO553@lahacks.4e8kzqe.mongodb.net/"
+    CONNECTION_STRING = os.environ.get("MONGODB_URI")
     client = MongoClient(CONNECTION_STRING)
     return client['fridge']
 
