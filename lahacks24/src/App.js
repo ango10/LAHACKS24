@@ -13,8 +13,8 @@ import NoPage from "./pages/NoPage";
 function App() {
   return (
     <Auth0Provider
-      domain="dev-on1vy228eirwa2oo.us.auth0.com"
-      clientId="ctkQfWr55tdgLX3VkpZ2ezbg9IELBFLE"
+      domain={process.env.REACT_APP_AUTH_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
       authorizationParams={{
         redirect_uri: "http://localhost:3000/Camera",
       }}
