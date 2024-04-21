@@ -21,6 +21,7 @@ app.add_middleware(
 )
 
 
+
 @app.post("/user/")
 async def mongodb_insert_user(user: User):
     try:
@@ -59,16 +60,31 @@ def mongodb_insert_food(food: Food):
         raise HTTPException(status_code=400, detail=f"Cannot add food: {e}")
 
 
-@app.get("/all_food/")
+@app.get("/all_food/{username}")
 def mongodb_get_all_food(username):
     try:
         food_list = []
         for food in food_collection.find({"username": username}):
-            food_list.append(food.get("name"))
+            food_list.append((food.get("name"), food.get("expiration_date")))
+        print(food_list)
 
-        # may need to jsonify it
-        return food_list
+        less_than_7 = []
+        less_than_30 = []
+        greater_than_30 = []
+
+        for food, date in food_list:
+            date_fr = datetime.datetime.strptime(date, "%Y-%m-%d")
+            delta = (date_fr.date() - datetime.date.today()).days
+            if delta < 7:
+                less_than_7.append(food)
+            elif delta < 30:
+                less_than_30.append(food)
+            else:
+                greater_than_30.append(food)
+
+        return {"less_than_7": less_than_7, "less_than_30": less_than_30, "greater_than_30": greater_than_30}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=400, detail="Cannot get all food: {e}")
 
 
@@ -82,7 +98,7 @@ def mongodb_get_expiring_food(username, expiration_date):
             food_list.append(food.get("food_name"))
 
         # may need to jsonify it
-        return food_list
+        return {"list": food_list}
     except:
         raise HTTPException(status_code=400, detail="Cannot get expiring food")
 
@@ -109,14 +125,14 @@ def mongodb_remove_food(food: Food):
     except:
         raise HTTPException(status_code=400, detail="Cannot delete food")
     
-@app.get("/get_recipes")
-def get_recipes():
+@app.get("/get_recipes/{username}")
+def get_recipes(username):
     genai.configure(api_key=os.environ.get("API_KEY"))
     model = genai.GenerativeModel('gemini-pro')
 
     prompt = "give me 3 recipes using 1 or more ingredients from this list: "
 
-    for food in mongodb_get_all_food("jennil38@uci.edu"):
+    for food in mongodb_get_all_food(username):
         prompt += food + " "
 
     prompt += ". please separate each recipe using an @ symbol"
@@ -130,6 +146,3 @@ def get_recipes():
 def mongodb_clear():
     food_collection.delete_many({})
     user_collection.delete_many({})
-
-
-get_recipes()
