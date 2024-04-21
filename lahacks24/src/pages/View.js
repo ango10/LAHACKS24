@@ -126,15 +126,24 @@ const Fridge = () => {
         >
           <li style={{ marginTop: "200px", height: "calc(100vh/3 - 45px)" }}>
             <b>Expiring in &lt;7 days: </b>
-            <p>{lessThan7}</p>
+            <br></br>
+            {lessThan7.map((food) => (
+              <p style={{ display: "inline-block", padding: "10px" }}>{food}</p>
+            ))}
           </li>
           <li style={{ height: "calc(100vh/3 - 100px)" }}>
             <b>Expiring in 7-30 days: </b>
-            <p>{lessThan30}</p>
+            <br></br>
+            {lessThan30.map((food) => (
+              <p style={{ display: "inline-block", padding: "10px" }}>{food}</p>
+            ))}
           </li>
           <li style={{ height: "calc(100vh/3)" }}>
             <b>Expiring in 30+ days: </b>
-            <p>{greaterThan30}</p>
+            <br></br>
+            {greaterThan30.map((food) => (
+              <p style={{ display: "inline-block", padding: "10px" }}>{food}</p>
+            ))}
           </li>
         </ul>
       </div>
