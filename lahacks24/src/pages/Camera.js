@@ -16,8 +16,8 @@ const Camera = () => {
       },
       body: JSON.stringify({ username: email, ingredients: ingredients }),
     })
-      .then((data) => {
-        navigate("/View");
+      .then((_) => {
+        navigate("/View", { state: { email: email } });
       })
       .catch((err) => {
         console.log(err);
