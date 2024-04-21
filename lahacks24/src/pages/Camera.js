@@ -1,10 +1,8 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
 import fridgeLogo from "../assets/fridgeIcon.png";
 
 const Camera = () => {
   const [ingredients, setIngredients] = React.useState([]);
-  const { user, isLoading } = useAuth0();
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -14,30 +12,26 @@ const Camera = () => {
     setIngredients(ingredientList);
   };
 
-  React.useEffect(() => {
-    if (!isLoading && user !== undefined) {
-      console.log(JSON.stringify({ username: user.email }));
-      fetch("http://localhost:8000/user/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username: user.email }),
-      })
-        .then((data) => {
-          // change later, does nothing
-          console.log(data.json());
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isLoading]);
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+  // React.useEffect(() => {
+  //   if (!isLoading && user !== undefined) {
+  //     console.log(JSON.stringify({ username: user.email }));
+  //     fetch("http://localhost:8000/user/", {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ username: user.email }),
+  //     })
+  //       .then((data) => {
+  //         // change later, does nothing
+  //         console.log(data.json());
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [isLoading]);
 
   return (
     <div style={{ backgroundImage: `url("/fridge.jpg")` }} className="h-screen">
