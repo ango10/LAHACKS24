@@ -3,7 +3,6 @@ import "./App.css";
 import ReactDOM from "react-dom/client";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ReactTyped from "react-typed";
 import Home from "./pages/Home";
 import Camera from "./pages/Camera";
 import View from "./pages/View";
