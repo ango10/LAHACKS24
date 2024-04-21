@@ -2,7 +2,12 @@ import React from "react";
 import fridgeLogo from "../assets/fridgeIcon.png";
 
 const Camera = () => {
+  const [email, setEmail] = React.useState("");
   const [ingredients, setIngredients] = React.useState([]);
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
@@ -11,27 +16,6 @@ const Camera = () => {
       .map((ingredient) => ingredient.trim());
     setIngredients(ingredientList);
   };
-
-  // React.useEffect(() => {
-  //   if (!isLoading && user !== undefined) {
-  //     console.log(JSON.stringify({ username: user.email }));
-  //     fetch("http://localhost:8000/user/", {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ username: user.email }),
-  //     })
-  //       .then((data) => {
-  //         // change later, does nothing
-  //         console.log(data.json());
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [isLoading]);
 
   return (
     <div style={{ backgroundImage: `url("/fridge.jpg")` }} className="h-screen">
@@ -74,6 +58,15 @@ const Camera = () => {
       <form className="flex justify-center">
         <div className="bg-slate-300 rounded-lg text-white text-center mt-36 w-96">
           <img src={fridgeLogo} width={500} alt="Logo" />
+          <h1 className="text-2xl font-bold text-center py-2 text-blue-500">
+            Email
+          </h1>
+          <input
+            class="block w-full max-w-md p-4 ps-10 text-sm text-white border border-gray-300 rounded-lg bg-slate-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required
+            value={email}
+            onChange={handleEmailChange}
+          />
           <h1 className="text-2xl font-bold text-center py-2 text-blue-500">
             Enter Ingredients Here
           </h1>
