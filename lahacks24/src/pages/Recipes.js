@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { ReactTyped } from "react-typed";
-import { useLocation } from "react-router-dom";
 
 const Extra = () => {
-  const location = useLocation();
+  const email = "rileysw@uci.edu";
 
   useEffect(() => {
-    console.log(location.state);
-    fetch("http://localhost:8000/get_recipes")
+    fetch("http://localhost:8000/get_recipes/" + email)
       .then((res) => {
         return res.json();
       })
@@ -24,12 +22,13 @@ const Extra = () => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "15% 15%",
+        fontFamily: "Indie Flower",
       }}
     >
       <div>
-        <div>
-          <div class="absolute max-w-screen-xl flex items-center justify-between mx-auto p-4">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <div className='absolute'>
+        <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+            <ul class="font-bold flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <div
                 style={{
                   backgroundColor: "#debb8e",
@@ -42,7 +41,7 @@ const Extra = () => {
                     href="/"
                     class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent background-color:white"
                   >
-                    Home
+                    Log Out
                   </a>
                 </li>
               </div>
@@ -72,7 +71,7 @@ const Extra = () => {
                 <li>
                   <a
                     href="/View"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    class="block py-2 px-3 text-gray-900 md:hover:text-blue-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
                     View Ingredients
                   </a>
@@ -88,14 +87,14 @@ const Extra = () => {
                 <li>
                   <a
                     href="/Recipes"
-                    class="block py-2 px-3 text-gray-900 rounded md:border-0 md:p-0 dark:text-white :bg-transparent"
+                    class="block py-2 px-3 text-blue-500 rounded md:border-0 md:p-0 dark:text-white :bg-transparent"
                   >
                     Recipes
                   </a>
                 </li>
               </div>
             </ul>
-          </div>
+        </div>
         </div>
       </div>
       <div>
@@ -119,13 +118,13 @@ const Extra = () => {
           }}
         >
           <h1
-            class="text-slate-800"
+            class="text-white"
             style={{ fontFamily: "Pixelify Sans", fontSize: "50px" }}
           >
             LOADING
             <ReactTyped
               strings={["..."]}
-              className="text-slate-800"
+              className="text-white"
               typeSpeed={150}
               loop
               backSpeed={150}
@@ -140,9 +139,9 @@ const Extra = () => {
       style={{ backgroundImage: `url("/anime_fridge.jpg")` }}
     >
       <div>
-        <div>
-          <div class="absolute h-screen flex-col items-center justify-between mx-auto p-4">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <div className='absolute' style={{fontFamily: "Indie Flower"}}>
+        <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+            <ul class="font-bold flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <div
                 style={{
                   backgroundColor: "#debb8e",
@@ -155,7 +154,7 @@ const Extra = () => {
                     href="/"
                     class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent background-color:white"
                   >
-                    Home
+                    Log Out
                   </a>
                 </li>
               </div>
@@ -185,7 +184,7 @@ const Extra = () => {
                 <li>
                   <a
                     href="/View"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    class="block py-2 px-3 text-gray-900 md:hover:text-blue-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
                     View Ingredients
                   </a>
@@ -201,14 +200,14 @@ const Extra = () => {
                 <li>
                   <a
                     href="/Recipes"
-                    class="block py-2 px-3 text-gray-900 rounded md:border-0 md:p-0 dark:text-white :bg-transparent"
+                    class="block py-2 px-3 text-blue-500 rounded md:border-0 md:p-0 dark:text-white :bg-transparent"
                   >
                     Recipes
                   </a>
                 </li>
               </div>
             </ul>
-          </div>
+        </div>
         </div>
       </div>
       <div className="h-full">
@@ -231,12 +230,12 @@ const Extra = () => {
           >
             <li>
               <h1
-                class="text-slate-800"
+                class="text-white"
                 style={{ textAlign: "center", fontSize: "50px" }}
               >
                 Recipe 1{" "}
               </h1>
-              <p class="text-slate-800" style={{ fontSize: "23px" }}>
+              <p class="text-white" style={{ fontSize: "23px" }}>
                 {recipes.length === 4 ? recipes[1] : recipes[0]}
               </p>
             </li>
@@ -256,12 +255,12 @@ const Extra = () => {
           >
             <li>
               <h1
-                class="text-slate-800"
+                class="text-white"
                 style={{ textAlign: "center", fontSize: "50px" }}
               >
                 Recipe 2
               </h1>
-              <p class="text-slate-800" style={{ fontSize: "23px" }}>
+              <p class="text-white" style={{ fontSize: "23px" }}>
                 {recipes.length === 4 ? recipes[2] : recipes[1]}
               </p>
             </li>
@@ -281,12 +280,12 @@ const Extra = () => {
           >
             <li>
               <h1
-                class="text-slate-800"
+                class="text-white"
                 style={{ textAlign: "center", fontSize: "50px" }}
               >
                 Recipe 3
               </h1>
-              <p class="text-slate-800" style={{ fontSize: "23px" }}>
+              <p class="text-white" style={{ fontSize: "23px" }}>
                 {recipes.length === 4 ? recipes[3] : recipes[2]}
               </p>
             </li>

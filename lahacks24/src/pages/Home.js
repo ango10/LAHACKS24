@@ -17,10 +17,10 @@ const Home = () => {
 
       <div className="pt-4 pr-4 flex justify-end z-10">
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded z-10"
+          class="bg-blue-500 hover:bg-blue-700 text-orange-300 font-bold py-2 px-4 rounded z-10" style={{fontFamily: "Indie Flower"}}
           onClick={() => navigate("/Camera")}
         >
-          Begin
+          Login
         </button>
       </div>
       <div className="text-center flex justify-center mt-80" style={{fontFamily: "Indie Flower"}}>
