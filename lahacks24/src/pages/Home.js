@@ -27,11 +27,11 @@ const Home = () => {
         <h1 className="font-bold text-8xl text-white z-20">
           Welcome to<br></br>
           <ReactTyped
-            strings={["Reimagined"]}
+            strings={["Recipes Remagined"]}
             className="text-blue-500"
-            typeSpeed={175}
+            typeSpeed={150}
             loop
-            backSpeed={175}
+            backSpeed={150}
           />
         </h1>
       </div>
