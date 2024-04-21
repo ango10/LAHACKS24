@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from models import User, Food
 from pymongo_get_database import get_database
+import google.generativeai as genai
+import os
 
 
 db = get_database()
@@ -95,9 +97,28 @@ def mongodb_remove_food(food: Food):
         return "Deleted food"
     except:
         raise HTTPException(status_code=400, detail="Cannot delete food")
+    
+@app.get("/get_recipes")
+def get_recipes():
+    genai.configure(api_key=os.environ.get("API_KEY"))
+    model = genai.GenerativeModel('gemini-pro')
 
+    prompt = "give me 3 recipes using 1 or more ingredients from this list: "
+
+    for food in mongodb_get_all_food("jennil38@uci.edu"):
+        prompt += food + " "
+
+    prompt += ". please separate each recipe using an @ symbol"
+    response = model.generate_content(prompt)
+
+    response_list = response.text.split("@")
+
+    return {"res": response_list}
 
 # not implemented
 def mongodb_clear():
     food_collection.delete_many({})
     user_collection.delete_many({})
+
+
+get_recipes()
